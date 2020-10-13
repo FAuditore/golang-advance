@@ -6,11 +6,11 @@ import (
 )
 
 func main() {
-	var s students = []student{
-		student{1},
-		student{3},
-		student{7},
-		student{4}}
+	var s students = []stu{
+		stu{1},
+		stu{3},
+		stu{7},
+		stu{4}}
 	sort.Sort(s)
 	fmt.Println(s)
 
@@ -84,11 +84,11 @@ func heapify(tree []int, n int, i int) {
 	}
 }
 
-type student struct {
+type stu struct {
 	id int
 }
 
-type students []student
+type students []stu
 
 func (s students) Len() int {
 	return len(s)

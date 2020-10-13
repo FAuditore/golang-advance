@@ -37,11 +37,9 @@ func main() {
 	data := <-a
 	fmt.Println(data)
 
-	ch1:=make(chan int,5)
+	ch1 := make(chan int, 5)
 	ch1 <- 100
-	fmt.Println(len(ch1),cap(ch1)) // 1,5
-
-
+	fmt.Println(len(ch1), cap(ch1)) // 1,5
 
 	ch2 := make(chan int)
 	go sendData(ch2)
@@ -49,7 +47,6 @@ func main() {
 	for v := range ch2 {
 		fmt.Println(v)
 	}
-
 
 	var ch = make(chan int)
 	//只写channel
@@ -65,7 +62,7 @@ forLoop:
 		case i, ok := <-ch:
 			if ok {
 				fmt.Println("receive ", i)
-			}else {
+			} else {
 				fmt.Println("channel closed")
 				break forLoop
 			}
@@ -74,6 +71,19 @@ forLoop:
 			break forLoop
 		}
 	}
+
+	time.Sleep(time.Second)
+
+	//ping pong example
+	table := make(chan *Ball)
+	go player("ping", table)
+	go player("pong", table)
+
+	table <- new(Ball)
+	time.Sleep(time.Second)
+	<-table
+	close(table)
+
 }
 
 func sendData(c chan int) {
@@ -81,4 +91,43 @@ func sendData(c chan int) {
 		c <- i * 2
 	}
 	close(c)
+}
+
+type Ball struct {
+	hits int
+}
+
+func player(s string, table chan *Ball) {
+	for {
+		ball, ok := <-table
+		if !ok {
+			break
+		}
+		ball.hits++
+		fmt.Println(s, ball.hits)
+		time.Sleep(100 * time.Millisecond)
+		table <- ball
+	}
+}
+
+type sub struct {
+	closing chan chan error
+	updates chan string
+}
+
+func (s *sub) Close() error {
+	errChan := make(chan error)
+	s.closing <- errChan
+	return <-errChan
+}
+func (s *sub) Loop()  {
+	var err error
+	for {
+		select{
+		case errChan:=<-s.closing:
+			errChan<-err
+			close(s.updates)
+			return
+		}
+	}
 }
