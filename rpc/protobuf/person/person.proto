@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+
+message Person{
+  int32 id = 1;
+  string name = 2;
+  //  string foo = 4;
+  repeated int32 scores = 7;  //packed
+
+  reserved 5, 6, 20 to 100, 200 to max; //reserved
+  reserved "foo", "bar";
+  Gender gender = 8;
+
+  //枚举类型的第一个选项的标识符必须是0
+  enum Gender {
+    option allow_alias = true;
+    FEMALE = 0;
+    MALE = 1;
+    WOMAN = 0;
+    MAN = 1;
+  }
+}
+
+message Request{
+  int32 id = 1;
+  int64 timestamp = 2;
+}
