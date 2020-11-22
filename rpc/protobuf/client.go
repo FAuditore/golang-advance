@@ -1,7 +1,7 @@
 package main
 
 import (
-	"awesomeProject/rpc/protobuf/person"
+	"advance/rpc/protobuf/person"
 	"fmt"
 	"log"
 	"net/rpc"

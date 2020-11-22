@@ -2,10 +2,9 @@ package test
 
 import "strconv"
 
-func App() {
+func Append() {
 	var a []string
-	a = make([]string, 0, 102)
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 180; i++ {
 		a = append(a, strconv.Itoa(i))
 	}
 }

@@ -14,7 +14,7 @@ func main() {
 	sort.Sort(s)
 	fmt.Println(s)
 
-	//sort.Ints(a)
+	//algorithm.Ints(text)
 	var a = []int{1, 34, 5215, 39, 4, 315, 2, 15, 40, 23}
 	quicksort(a, 0, len(a)-1)
 	fmt.Println(a)

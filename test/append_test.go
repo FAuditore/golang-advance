@@ -4,7 +4,7 @@ import "testing"
 
 func BenchmarkApp(b *testing.B){
 	for i:=0;i<b.N;i++{
-		App()
+		Append()
 	}
 }
 

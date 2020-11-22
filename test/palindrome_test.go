@@ -3,9 +3,18 @@ package test
 import (
 	"fmt"
 	"math/rand"
+	"os"
 	"testing"
 	"time"
 )
+
+func TestMain(m *testing.M) {
+	fmt.Println("write setup code here...") // 测试之前的做一些设置
+	// 如果 TestMain 使用了 flags，这里应该加上flag.Parse()
+	retCode := m.Run()                         // 执行测试
+	fmt.Println("write teardown code here...") // 测试之后做一些拆卸工作
+	os.Exit(retCode)                           // 退出测试
+}
 
 func TestIsPalindrome(t *testing.T) {
 
@@ -65,3 +74,7 @@ func BenchmarkIsPalindrome(b *testing.B) {
 		IsPalindrome("A man, a plan, a canal: Panama")
 	}
 }
+//go test -bench=BenchmarkIsPalindrome -cpuprofile=cpu.out -benchmem -covermode=count -coverprofile=cover.out
+//go tool cover -html=cover.out
+//go tool pprof cpu.out
+//web
