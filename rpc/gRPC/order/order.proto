@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package order;
+option go_package = "pb";
+
+import "google/api/annotations.proto";
+
+enum status{
+  INVALID = 0;
+  VALID = 1;
+}
+
+
+
+message OrderRequest{
+  int64 id = 1;
+  reserved 5;
+}
+
+message OrderInfo{
+  int64 id = 1 ;
+  string name = 2;
+  string desc = 3;
+  status state = 4;
+}
+message EmptyRequest{ }
+
+message AddResponse{
+  bool success = 1;
+}
+
+message ClientMessage{
+  string message = 1;
+}
+message ServerMessage{
+  string message = 1;
+}
+
+service Order{
+  rpc Get (OrderRequest) returns (OrderInfo){
+    option (google.api.http) = {
+      post : "/v1/example/echo"
+    };
+  };
+  rpc GetAll (EmptyRequest) returns (stream OrderInfo);
+  rpc Add (stream OrderInfo) returns (AddResponse);
+  rpc Chat(stream ClientMessage) returns (stream ServerMessage);
+}

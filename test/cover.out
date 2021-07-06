@@ -1,0 +1,11 @@
+mode: set
+advance/test/append.go:8.15,10.27 2 1
+advance/test/append.go:10.27,12.12 2 1
+advance/test/append.go:12.12,14.4 1 0
+advance/test/palindrome.go:7.34,9.22 2 1
+advance/test/palindrome.go:14.2,14.25 1 1
+advance/test/palindrome.go:19.2,19.13 1 1
+advance/test/palindrome.go:9.22,10.26 1 1
+advance/test/palindrome.go:10.26,12.4 1 1
+advance/test/palindrome.go:14.25,15.46 1 1
+advance/test/palindrome.go:15.46,17.4 1 1

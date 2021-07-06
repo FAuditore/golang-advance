@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/field_mask.proto";
+//import "google/api/http.proto";
+//import "google/api/httpbody.proto";
+
+option go_package = ".;pb";
+
+
+message User{
+  string id = 1;
+  string username = 2;
+  google.protobuf.FieldMask paths = 3;
+}
+
+
+message LoginRequest{
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse{
+  string access_token = 1;
+}
+
+service AuthService{
+  rpc Login(LoginRequest) returns (LoginResponse){
+    option (google.api.http) = {
+      post: "/v1/auth/login"
+      body: "*"
+    };
+  }
+}
