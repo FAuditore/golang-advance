@@ -39,17 +39,16 @@ func main() {
 	total := int(count)
 	for {
 		n2, err = srcFile.Read(data)
-		if err==io.EOF||n2==0{
+		if err == io.EOF || n2 == 0 {
 			fmt.Println("文件复制完毕")
 			tempFile.Close()
 			os.Remove(tempFileName)
 			break
 		}
 		n3, err = destFile.Write(data[:n2])
-		total+=n3
+		total += n3
 		//将复制总量存储到文件中
-		tempFile.Seek(0,io.SeekStart)
+		tempFile.Seek(0, io.SeekStart)
 		tempFile.WriteString(strconv.Itoa(total))
 	}
 }
-

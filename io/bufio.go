@@ -10,7 +10,7 @@ import (
 
 func main() {
 	fileName := "bufio"
-	file, err := os.OpenFile(fileName,os.O_RDWR,os.ModePerm)
+	file, err := os.OpenFile(fileName, os.O_RDWR, os.ModePerm)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -58,13 +58,13 @@ func main() {
 	fmt.Print(s2)
 
 	//写入到缓冲区中
-	file.Seek(0,io.SeekEnd)
-	writer:=bufio.NewWriter(file)
-	n,err:=writer.WriteString(s2)
+	file.Seek(0, io.SeekEnd)
+	writer := bufio.NewWriter(file)
+	n, err := writer.WriteString(s2)
 	fmt.Println(err)
 	fmt.Println(n)
 
 	//将缓冲区内容刷新
-	err =writer.Flush()
+	err = writer.Flush()
 	fmt.Println(err)
 }

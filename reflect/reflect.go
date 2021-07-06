@@ -40,8 +40,6 @@ func main() {
 	fmt.Println(reflect.ValueOf(a).Type().Method(0).Name)
 	fmt.Println(reflect.ValueOf(formatAtom).Call([]reflect.Value{reflect.ValueOf(reflect.ValueOf(a))}))
 
-
-
 	fmt.Println(reflect.ValueOf(c).CanSet())
 	fmt.Println(reflect.ValueOf(c).Elem().CanSet())
 	fmt.Println(reflect.Indirect(reflect.ValueOf(c)).CanSet())

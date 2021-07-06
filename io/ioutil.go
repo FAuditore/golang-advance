@@ -33,21 +33,20 @@ func main() {
 
 	//ReadDir 读取一个文件夹下所有文件  返回fileInfo类型
 	dirName := "D:/gopath/src/advanceProject"
-	fileList,err :=ioutil.ReadDir(dirName)
+	fileList, err := ioutil.ReadDir(dirName)
 	fmt.Println(err)
-	for i:=0;i<len(fileList);i++{
-		fmt.Println(i," ",fileList[i].Name())
+	for i := 0; i < len(fileList); i++ {
+		fmt.Println(i, " ", fileList[i].Name())
 	}
 
-
 	//TempDir 临时目录
-	dir,err:=ioutil.TempDir("D:/gopath/src/advanceProject","tmp")
+	dir, err := ioutil.TempDir("D:/gopath/src/advanceProject", "tmp")
 	fmt.Println(err)
 	fmt.Println(dir)
 	defer os.RemoveAll(dir)
 
 	//TempFile 创建临时文件 返回fileInfo
-	file,err:=ioutil.TempFile(dir,"tmp")
+	file, err := ioutil.TempFile(dir, "tmp")
 	fmt.Println(err)
 	fmt.Println(file.Name())
 	//defer os.Remove(file.Name())

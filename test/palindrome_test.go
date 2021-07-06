@@ -74,6 +74,7 @@ func BenchmarkIsPalindrome(b *testing.B) {
 		IsPalindrome("A man, a plan, a canal: Panama")
 	}
 }
+
 //go test -bench=BenchmarkIsPalindrome -cpuprofile=cpu.out -benchmem -covermode=count -coverprofile=cover.out
 //go tool cover -html=cover.out
 //go tool pprof cpu.out

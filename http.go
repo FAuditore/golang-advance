@@ -9,7 +9,6 @@ import (
 
 func main() {
 
-
 }
 func v1() {
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
@@ -48,4 +47,3 @@ type myHandler struct{}
 func (mh *myHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("v2"))
 }
-

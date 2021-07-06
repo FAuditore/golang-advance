@@ -43,7 +43,7 @@ func main() {
 		v1.GET("/list", func(c *gin.Context) {
 			users := []User{}
 			db.Debug().Find(&users)
-			c.JSON(200,users)
+			c.JSON(200, users)
 		})
 
 		v1.GET("/createtable", func(c *gin.Context) {

@@ -29,7 +29,7 @@ func main() {
 		messages <- i
 	}
 	time.Sleep(3 * time.Second)
-	close(done)// close 会写入false
+	close(done) // close 会写入false
 	time.Sleep(3 * time.Second)
 	fmt.Println("main process exit!")
 }

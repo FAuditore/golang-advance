@@ -20,7 +20,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(img.Bounds(),kind)
+	fmt.Println(img.Bounds(), kind)
 
 	fmt.Fprintln(os.Stderr, "input format: ", kind)
 	file2, err := os.Create("50.jpeg")

@@ -2,5 +2,5 @@ package person
 
 type Person struct {
 	Name string
-	Age int
+	Age  int
 }

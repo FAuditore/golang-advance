@@ -2,8 +2,8 @@ package test
 
 import "testing"
 
-func BenchmarkApp(b *testing.B){
-	for i:=0;i<b.N;i++{
+func BenchmarkApp(b *testing.B) {
+	for i := 0; i < b.N; i++ {
 		Append()
 	}
 }
@@ -35,4 +35,4 @@ func BenchmarkApp(b *testing.B){
 	0     0%   100%      0.08s  5.19%  runtime.sysmon
 	0     0%   100%      1.45s 94.16%  testing.(*B).launch
 	0     0%   100%      1.45s 94.16%  testing.(*B).runN
- */
+*/

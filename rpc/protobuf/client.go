@@ -25,8 +25,7 @@ func main() {
 	}
 	fmt.Println(*resp)
 
-
-	call := client.Go("PersonService.GetPersonInfo", request, &resp,nil)
+	call := client.Go("PersonService.GetPersonInfo", request, &resp, nil)
 	replyDone := <-call.Done
 	fmt.Println(replyDone)
 	fmt.Println(*resp)

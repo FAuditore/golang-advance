@@ -7,26 +7,31 @@ import (
 
 func main() {
 	/*
-		声明通道
-			var [name] chan [type]
-			[name] = make(chan [type])
+			声明通道
+				var [name] chan [type]
+				[name] = make(chan [type])
 
-		读取数据
-			[data] := <-[chanName]
-		发送数据
-			[chanName] <- [value]
-		一次发送一次阻塞
+			读取数据
+				[data] := <-[chanName]
+			发送数据
+				[chanName] <- [value]
+			一次发送一次阻塞
 
 
-		缓冲通道 通道满了阻塞
-		make(chan type,capacity)
+			缓冲通道 通道满了阻塞
+			make(chan type,capacity)
 
-		双向通道
-			chan <- data 发送数据 写出
-			data <- chan 获取数据 读取
-		单向通道
-			chan <- T 只能写
-			<- chan T 只能读
+			双向通道
+				chan <- data 发送数据 写出
+				data <- chan 获取数据 读取
+			单向通道
+				chan <- T 只能写
+				<- chan T 只能读
+
+		操作		空值(nil)	非空已关闭	非空未关闭
+		关闭		panic		panic		成功关闭
+		发送数据	永久阻塞		panic		阻塞或成功发送
+		接收数据	永久阻塞		永不阻塞		阻塞或者成功接收
 	*/
 	var a chan int
 	a = make(chan int)
@@ -120,12 +125,12 @@ func (s *sub) Close() error {
 	s.closing <- errChan
 	return <-errChan
 }
-func (s *sub) Loop()  {
+func (s *sub) Loop() {
 	var err error
 	for {
-		select{
-		case errChan:=<-s.closing:
-			errChan<-err
+		select {
+		case errChan := <-s.closing:
+			errChan <- err
 			close(s.updates)
 			return
 		}

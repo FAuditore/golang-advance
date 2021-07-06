@@ -17,16 +17,14 @@ func main() {
 		增加局部变量,defer信息保存到当前栈帧局部变量区域 避免了堆分配
 		1.14
 		编译阶段插入代码,把defer函数执行直接展开在所属函数内,不需要注册defer链表 但是在panic发生后需要栈扫描恢复defer链表
-	 */
+	*/
 	i := increaseA()
 	fmt.Println(i)
-
 
 	r := increaseB()
 	fmt.Println(r)
 
 	bigSlowOperation()
-
 
 	foo(2, 0)
 }
@@ -46,16 +44,16 @@ func increaseB() (r int) {
 	return r
 }
 
-func bigSlowOperation(){
+func bigSlowOperation() {
 	defer trace("bigSlowFunction")()
-	time.Sleep(5*time.Second)
+	time.Sleep(5 * time.Second)
 }
 
-func trace(name string) func(){
-	start:=time.Now()
-	log.Printf("enter: %s ",name)
+func trace(name string) func() {
+	start := time.Now()
+	log.Printf("enter: %s ", name)
 	return func() {
-		log.Printf("exit: %s %s",name,time.Since(start))
+		log.Printf("exit: %s %s", name, time.Since(start))
 	}
 }
 

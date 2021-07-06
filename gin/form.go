@@ -10,6 +10,7 @@ var secrets = gin.H{
 	"austin": gin.H{"email": "austin@example.com", "phone": "666"},
 	"lena":   gin.H{"email": "lena@guapa.com", "phone": "523443"},
 }
+
 func main() {
 
 	r := gin.Default()

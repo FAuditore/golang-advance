@@ -8,16 +8,16 @@ import (
 )
 
 func main() {
-	tcpAddr,err:=net.ResolveTCPAddr("tcp",":8999")
+	tcpAddr, err := net.ResolveTCPAddr("tcp", ":8999")
 	handleErr(err)
-	listener,err:=net.ListenTCP("tcp",tcpAddr)
+	listener, err := net.ListenTCP("tcp", tcpAddr)
 	handleErr(err)
-	for{
-		conn,err:=listener.Accept()
-		if err!=nil {
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
 			continue
 		}
-		read:=make([]byte,1024)
+		read := make([]byte, 1024)
 		conn.Read(read)
 		fmt.Println(string(read))
 		fmt.Println(conn.RemoteAddr())
@@ -26,7 +26,7 @@ func main() {
 	}
 }
 func handleErr(e error) {
-	if e!=nil {
+	if e != nil {
 		log.Fatal(e.Error())
 	}
 }
